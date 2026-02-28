@@ -31,7 +31,7 @@ func main() {
 			case tick := <-ticker.C: // Render a templ fragment and merge it into the DOM
 				log.Printf("Tick: %v", tick)
 				buf := &bytes.Buffer{}
-				now := time.Now().Format("15:04:05")
+				now := tick.Format("15:04:05")
 				if err := ClockFragment(now).Render(r.Context(), buf); err != nil {
 					return
 				}
