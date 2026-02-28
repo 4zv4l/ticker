@@ -11,6 +11,8 @@ templ ClockPage() {
 		</head>
 		<body>
 			<h1>Real-time Clock</h1>
+            {{ name, _ := time.Now().Zone() }}
+            Timezone: { name }
             <div id="clock" data-on-load="@get('/clock')">
 				@ClockFragment(time.Now().Format("15:04:05"))
 			</div>
