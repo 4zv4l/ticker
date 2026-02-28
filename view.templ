@@ -1,0 +1,26 @@
+package main
+
+import "time"
+
+templ ClockPage() {
+	<!DOCTYPE html>
+	<html>
+		<head>
+			<title>Datastar Go Clock</title>
+            <script type="module" src="https://unpkg.com/@starfederation/datastar@latest/dist/datastar.js"></script>
+		</head>
+		<body>
+			<h1>Real-time Clock</h1>
+            <div id="clock" data-on-load="@get('/clock')">
+				@ClockFragment(time.Now().Format("15:04:05"))
+			</div>
+		</body>
+	</html>
+}
+
+// ClockFragment is the template that gets updated via SSE
+templ ClockFragment(currentTime string) {
+	<div id="clock">
+		Current Time: { currentTime }
+	</div>
+}
